@@ -2,7 +2,7 @@
     <v-list-item-content :class="[ isExpired(todo) ? 'todo--pastdue' :'',  todo.isComplete ? 'todo--complete':'']">
         <v-row>
             <v-col cols="1">
-                <v-checkbox class="shrink ma-0 pa-0"  v-model="todo.isComplete" />
+                <v-checkbox class="shrink ma-0 pa-0" @change="updateTodo(todo)" v-model="todo.isComplete" />
             </v-col>
             <v-col class="text-left">
                 {{ todo.description }} 
@@ -16,6 +16,7 @@
     </v-list-item-content>          
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
     name: 'Todo',
     data:() => ({ }),
@@ -23,6 +24,9 @@ export default {
         todo: Object
     },
     methods: {
+        ...mapActions('todos',{
+            updateTodo: 'updateTodo'
+        }),
         formatDate(date) {
             let due = new Date(date);
             return due.toLocaleString().split(',')[0];
