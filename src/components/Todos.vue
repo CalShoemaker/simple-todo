@@ -6,11 +6,10 @@
                     <v-list-item class="ma-0" :key="index">
                         <Todo :todo="item" />
                     </v-list-item>
-                    <v-divider v-if="index < todos.length - 1" :key="index" />
+                    <v-divider v-if="index < todos.length - 1" :key="'divider-'+index" />
                 </template>
             </v-list>
         </v-card>
-        
     </v-container>
 </template>
 <script>
