@@ -33,7 +33,7 @@ const state = () =>({
 })
 
 const getters = {
-    todos: (state) => { return state.todos; }
+    todos: (state) => { return filter(state.todos); }
 }
 
 const actions = {
@@ -51,10 +51,16 @@ const mutations = {
         });
 
         if(itemIndex !== null){
-            state.todos[itemIndex] = item;
+            return state.todos[itemIndex] = item;
         }
     }
 }
+
+const filter = (todos) => {
+    todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)); // Order by oldest to newest (oldest item being due soonest)
+    todos.sort((a, b) => a.isComplete - b.isComplete); // Overdue items at top
+    return todos; // Completed naturally fall to the bottom
+};
 
 export default {
     namespaced: true,
