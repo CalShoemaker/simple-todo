@@ -10,7 +10,7 @@
             <v-col>
             </v-col>
             <v-col class="text-right">
-                {{ formatDate(todo.dueDate) }}
+                <span class="todo--date">{{ formatDate(todo.dueDate) }}</span>
             </v-col>
         </v-row> 
     </v-list-item-content>          
@@ -29,7 +29,9 @@ export default {
         }),
         formatDate(date) {
             let due = new Date(date);
-            return due.toLocaleString().split(',')[0];
+            let dueDate = due;
+            let padded = ('0' + dueDate.getMonth()).slice(-2) + '/' + ('0' + (dueDate.getDate()+1)).slice(-2) + '/' + dueDate.getFullYear();
+            return padded;
         },
         isExpired(todo) {
             let due = new Date(todo.dueDate);
@@ -47,5 +49,10 @@ export default {
 
     .todo--complete {
         background: lightgreen;
+    }
+    .todo--date {
+        border: 1px solid #d1d1d1;
+        display: inline-block;
+        padding: 2px;
     }
 </style>
