@@ -19,14 +19,12 @@ import Todo from './Todo';
 
 export default {
     name: 'Todos',
-    data: ()=> ({
-        
-    }),
+    data: ()=> ({ }),
     computed: {
         ...mapGetters('todos', {
             todos: 'todos'
         })
-  },
+    },
     components: {
         Todo
     }
