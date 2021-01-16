@@ -1,6 +1,6 @@
 <template>
     <v-list-item-content :class="[ isExpired(todo) ? 'todo--pastdue' :'',  todo.isComplete ? 'todo--complete':'']">
-        <v-row>
+        <v-row class="pl-2 pr-2">
             <v-col cols="1">
                 <v-checkbox class="shrink ma-0 pa-0" @change="updateTodo(todo)" v-model="todo.isComplete" />
             </v-col>
