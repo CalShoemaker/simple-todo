@@ -10,7 +10,9 @@
                 </template>
             </v-list>
             <div v-else>
-                no items
+                <v-alert border="bottom" color="red lighten-2" dark>
+                No items found...
+                </v-alert>
             </div>
         </v-card>
     </v-container>

@@ -1,5 +1,5 @@
 <template>
-    <v-list-item-content :class="[ isExpired(todo) ? 'todo--pastdue' :'',  todo.isComplete ? 'todo--complete':'']">
+    <v-list-item-content v-if="todo" :class="[ isExpired(todo) ? 'todo--pastdue' :'',  todo.isComplete ? 'todo--complete':'']">
         <v-row class="pl-2 pr-2">
             <v-col cols="1">
                 <v-checkbox class="shrink ma-0 pa-0" @change="updateTodo(todo)" v-model="todo.isComplete" />
@@ -34,8 +34,8 @@ export default {
             return padded;
         },
         isExpired(todo) {
-            let due = new Date(todo.dueDate);
-            let today = new Date(Date.now());
+            let due = todo && todo.dueDate ? new Date(todo.dueDate) : 1 ;
+            let today =  todo && todo.dueDate ? new Date(Date.now()): 0 ;
 
             return today > due;
         }
