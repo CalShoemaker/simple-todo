@@ -34,8 +34,8 @@ export default {
             return padded;
         },
         isExpired(todo) {
-            let due = todo && todo.dueDate ? new Date(todo.dueDate) : 1 ;
-            let today =  todo && todo.dueDate ? new Date(Date.now()): 0 ;
+            let due = new Date(todo.dueDate);
+            let today = new Date(Date.now());
 
             return today > due;
         }
