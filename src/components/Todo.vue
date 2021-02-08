@@ -28,10 +28,12 @@ export default {
             updateTodo: 'updateTodo'
         }),
         formatDate(date) {
-            let due = new Date(date);
-            let dueDate = due;
-            let padded = ('0' + dueDate.getMonth()).slice(-2) + '/' + ('0' + (dueDate.getDate()+1)).slice(-2) + '/' + dueDate.getFullYear();
-            return padded;
+            if(date) {
+                let due = new Date(date);
+                let dueDate = due;
+                let padded = ('0' + dueDate.getMonth()).slice(-2) + '/' + ('0' + (dueDate.getDate()+1)).slice(-2) + '/' + dueDate.getFullYear();
+                return padded;
+            }
         },
         isExpired(todo) {
             let due = new Date(todo.dueDate);
