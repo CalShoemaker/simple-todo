@@ -33,7 +33,20 @@ const mutations = {
     },
     filter(todos) {
         if(todos.length > 0) {
-            todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)); // Order by oldest to newest (oldest item being due soonest)
+            todos.sort((a, b) =>{ 
+                if(a.dueDate === b.dueDate) {
+                    return 0
+                }
+                else if(a.dueDate === null) {
+                    return 1
+                }
+                else if(b.dueDate === null) {
+                    return -1
+                }
+                else {
+                    return new Date(a.dueDate) - new Date(b.dueDate)
+                }
+            }); 
             todos.sort((a, b) => a.isComplete - b.isComplete); // Overdue items at top
         } 
         return todos; // Completed naturally fall to the bottom

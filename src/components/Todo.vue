@@ -36,8 +36,7 @@ export default {
         isExpired(todo) {
             let due = new Date(todo.dueDate);
             let today = new Date(Date.now());
-
-            return today > due;
+            return todo.dueDate ? today > due : false;
         }
     }
 }
